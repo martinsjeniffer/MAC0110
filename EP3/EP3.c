@@ -1,11 +1,11 @@
 #include <stdio.h>
-#define MAX 500
+#define MAX 1000
 
 int main(){
     FILE *arquivo_de_entrada;
     char nome_arquivo[80];
-    //int in_out = 0, nusp = 0, horas = 0, minutos = 0;
     int in_out[MAX], nusp[MAX], horas[MAX], minutos[MAX];
+    int i;
 
 
     /********************************************/
@@ -15,20 +15,20 @@ int main(){
     printf("\tBiblioteca 'Carlos Benjamin de Lyra' - IME\n");
     printf("\t   Universidade de São Paulo \n\n");
 
-
     printf("Digite o nome do arquivo de dados: ");
-    scanf("%s", &nome_arquivo);
+    scanf("%s", nome_arquivo);
 
     arquivo_de_entrada = fopen(nome_arquivo, "r");
-    fprintf (arquivo_de_entrada, nome_arquivo);
-
+    
+    i = 0;
     while (!feof(arquivo_de_entrada)) {
-        if (fscanf(arquivo_de_entrada, "%d %d %d %d:%d", &in_out, &nusp, &horas, &minutos) != 4) {
-            continue;
-        }
-        printf ("%d %d %d %d:%d", in_out, nusp, horas, minutos);
-        fclose(arquivo_de_entrada);
+        fscanf(arquivo_de_entrada, "%d %d %d:%d", &in_out[i], &nusp[i], &horas[i], &minutos[i]);
+       
+        i++;
     }
+
+    fclose(arquivo_de_entrada);
+    printf("\narquivo lido!\n");
 
 
     return 0;
